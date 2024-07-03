@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cau3</title>
+    </head>
+    <body>
+        <script>
+            //Check the prime number
+            function isPrime(n) {
+                let isPrimeNum = true;
+                if (n < 2) {
+                    isPrimeNum = false;
+                }
+                for (let i = 2; i <= Math.sqrt(n); i++) {
+                    if (n % i === 0) {
+                        isPrimeNum = false;
+                    }
+                }
+                return isPrimeNum;
+            }
+
+            // return PrimeArray
+            function newArrPrime(array) {
+                const arrPrime = [];
+                for (let i = 0; i < array.length; i++) {
+                    if (isPrime(array[i])) {
+                        arrPrime.push(array[i]);
+                    }
+                }
+                return arrPrime;
+            }
+
+            // Sort
+            function quickSort(arr) {
+                if (arr.length <= 1) {
+                    return arr;
+                }
+
+                let pivot = arr[0];
+                let leftArr = [];
+                let rightArr = [];
+
+                for (let i = 1; i < arr.length; i++) {
+                    if (arr[i] < pivot) {
+                        leftArr.push(arr[i]);
+                    } else {
+                        rightArr.push(arr[i]);
+                    }
+                }
+
+                return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
+            }
+
+            let myPrimeArr = newArrPrime([1, 2, 5, 7, 11, 13, 17, 19, 22, 23]);
+            console.log(quickSort(myPrimeArr));
+        </script>
+    </body>
+</html>
